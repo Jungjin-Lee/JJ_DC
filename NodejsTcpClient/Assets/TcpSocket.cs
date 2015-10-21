@@ -110,7 +110,7 @@ public class TcpSocket {
 				JsonData json = JsonMapper.ToObject(jsonString);
 
 
-				Debug.Log(json["type"]);
+				Debug.Log("type : " + json["type"]);
 				int type = int.Parse(json["type"].ToString());
 				AddQueue(type, jsonString);
 				System.Array.Clear(_recvBuffer, 0, _recvBuffer.Length);
@@ -133,6 +133,18 @@ public class TcpSocket {
 			break;
 		case JJSocketType.ReceivedChat:
 			sock = JsonMapper.ToObject<SocketChat>(json);
+			break;
+		case JJSocketType.RoomJoinSuccess:
+			sock = JsonMapper.ToObject<SocketRoomJoin>(json);
+			break;
+		case JJSocketType.RoomConnectSuccess:
+			sock = JsonMapper.ToObject<SocketRoomConnectSuccess>(json);
+			break;
+		case JJSocketType.RoomInfo:
+			sock = JsonMapper.ToObject<SocketRoomInfo>(json);
+			break;
+		default:
+			Debug.LogError("TcpSocket - AddQueue - Set Type Please");
 			break;
 		}
 		/*

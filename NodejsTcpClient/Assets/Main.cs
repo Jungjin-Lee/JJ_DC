@@ -8,6 +8,13 @@ public class Main {
 	public string pwd = "";
 	public string name = "";
 
+
+	public int room = -1;
+	public int mySlot = -1;
+
+	public string player1 = "";
+	public string player2 = "";
+
 	public static Main Instance {
 		get {
 			if(_instance == null) {
@@ -18,5 +25,7 @@ public class Main {
 	}
 
 	public void Init() {
+		room = -1;
+		mySlot = -1;
 	}
 }

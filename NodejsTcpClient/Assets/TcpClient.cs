@@ -36,7 +36,9 @@ public class TcpClient : MonoBehaviour {
 	void Start() {
 		SocketManager.EventLoginSuccess = new TcpSocketManager.EventSocket(EventLoginSuccess);
 		SocketManager.EventReceivedChat = new TcpSocketManager.EventSocket(EventReceivedChat);
-//		txtChatContainer = 
+		SocketManager.EventRoomJoinSuccess = new TcpSocketManager.EventSocket(EventRoomJoinSuccess);
+		SocketManager.EventRoomConnectSuccess = new TcpSocketManager.EventSocket(EventRoomConnectSuccess);
+		SocketManager.EventRoomInfo = new TcpSocketManager.EventSocket(EventRoomInfo);
 	}
 
 	void Update() {
@@ -51,15 +53,39 @@ public class TcpClient : MonoBehaviour {
 		LobbyScene.SetActive(true);
 		_user.Name = Main.Instance.name;
 
-		SocketRoomJoin join = new SocketRoomJoin();
-		join.index = 0;
-		SocketManager.tcpSocket.SendMessage(join);
+		SocketRoomConnect room = new SocketRoomConnect();
+		SocketManager.tcpSocket.SendMessage(room);
+//		SocketRoomJoin join = new SocketRoomJoin();
+//		join.index = 0;
+//		SocketManager.tcpSocket.SendMessage(join);
 	}
 
 	void EventReceivedChat(JJSocket sock) {
 		SocketChat chat = sock as SocketChat;
 		Chat.Instance.ChatContainer2.text += chat.name +  " : " + chat.message + "\n";
 		Debug.Log("EventReceivedChat - " + chat.name +  " : " + chat.message);
+	}
+
+	void EventRoomJoinSuccess(JJSocket sock) {
+		SocketRoomJoin room = sock as SocketRoomJoin;
+		Debug.Log("EventRoomJoinSuccess - " + room.room);
+		Main.Instance.room = room.room;
+		Main.Instance.mySlot = 0;
+	}
+
+	void EventRoomConnectSuccess(JJSocket sock) {
+		SocketRoomConnectSuccess room = sock as SocketRoomConnectSuccess;
+		Debug.Log("EventRoomConnectSuccess - " + room.room);
+		Main.Instance.room = room.room;
+		Main.Instance.mySlot = room.slot;
+	}
+	
+	void EventRoomInfo(JJSocket sock) {
+		SocketRoomInfo room = sock as SocketRoomInfo;
+		Debug.Log("EventRoomInfo - " + room.room);
+		Main.Instance.room = room.room;
+		Main.Instance.player1 = room.player1;
+		Main.Instance.player2 = room.player2;
 	}
 
 	public void Connect() {

@@ -1,7 +1,7 @@
 ﻿public class SocketRoomConnect : JJSocket {
-	public int index;
+	public int room;
 
 	public SocketRoomConnect() {
-		type = JJSocketType.RoomJoin;
+		type = JJSocketType.RoomConnect;
 	}
 }

@@ -8,6 +8,9 @@ public class TcpSocketManager : MonoBehaviour {
 
 	public EventSocket EventLoginSuccess;
 	public EventSocket EventReceivedChat;
+	public EventSocket EventRoomJoinSuccess;
+	public EventSocket EventRoomConnectSuccess;
+	public EventSocket EventRoomInfo;
 
 	public TcpSocket tcpSocket;
 
@@ -23,6 +26,7 @@ public class TcpSocketManager : MonoBehaviour {
 
 	void ProcessSock(JJSocket sock) {
 		if(sock == null) return;
+//		SocketLoginSuccess login = sock as SocketLoginSuccess;
 
 		switch(sock.type) {
 		case JJSocketType.Connected:
@@ -39,6 +43,17 @@ public class TcpSocketManager : MonoBehaviour {
 
 		case JJSocketType.ReceivedChat:
 			EventReceivedChat(sock);
+			break;
+
+		case JJSocketType.RoomJoinSuccess:
+			EventRoomJoinSuccess(sock);
+			break;
+
+		case JJSocketType.RoomConnectSuccess:
+			EventRoomConnectSuccess(sock);
+			break;
+		case JJSocketType.RoomInfo:
+			EventRoomInfo(sock);
 			break;
 		}
 	}
