@@ -21,6 +21,7 @@ public class TcpSocketManager : MonoBehaviour {
 	void Update() {
 		tcpSocket.ReceiveMessage();
 		JJSocket sock = tcpSocket.Pop();
+		DebugWindow.Log(tcpSocket.PopSockString());
 		ProcessSock(sock);
 	}
 

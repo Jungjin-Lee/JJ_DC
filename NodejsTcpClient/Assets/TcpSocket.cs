@@ -11,6 +11,7 @@ public class TcpSocket {
 	public int PORT = 8000;
 
 	List<JJSocket> SockList = new List<JJSocket>();
+	List<string> sockStringList = new List<string>();
 
 	Socket _socket = null;
 	User _user = new User();
@@ -57,6 +58,7 @@ public class TcpSocket {
 			_socket.BeginSend(bytes, 0, bytes.Length, SocketFlags.None, new AsyncCallback(SendComplete), null);
 		} catch(Exception e) {
 			Debug.LogError("send fail exception : " + e.Message);
+			DebugWindow.Log("send fail exception : " + e.Message);
 			Shutdown();
 		}
 	}
@@ -72,6 +74,7 @@ public class TcpSocket {
 			}
 		} catch(Exception e) {
 			Debug.LogError("Send Exception : " + e.Message);
+			DebugWindow.Log("Send Exception : " + e.Message);
 			Shutdown();
 		}
 	}
@@ -84,6 +87,7 @@ public class TcpSocket {
 			_socket.BeginReceive(_recvBuffer, 0, _recvBuffer.Length, SocketFlags.None, new AsyncCallback(ReceiveComplete), null);
 		} catch(Exception e) {
 			Debug.LogError("BeginException : " + e.Message);
+			DebugWindow.Log("BeginException : " + e.Message);
 			Shutdown();
 		}
 	}
@@ -107,6 +111,7 @@ public class TcpSocket {
 
 				string jsonString = System.Text.Encoding.UTF8.GetString(cuttingBuffer);
 				Debug.Log("recv : " + jsonString);
+				sockStringList.Add("recv : " + jsonString);
 				JsonData json = JsonMapper.ToObject(jsonString);
 
 
@@ -117,6 +122,7 @@ public class TcpSocket {
 			}
 		} catch(Exception e) {
 			Debug.LogError("Receive Exception : " + e.Message);
+			DebugWindow.Log("Receive Exception : " + e.Message);
 			Shutdown();
 		}
 	}
@@ -145,35 +151,25 @@ public class TcpSocket {
 			break;
 		default:
 			Debug.LogError("TcpSocket - AddQueue - Set Type Please");
+			DebugWindow.Log("TcpSocket - AddQueue - Set Type Please");
 			break;
 		}
-		/*
-		if(type == JJSocketType.Connected) {
-			chat = new JJSocketType();
-		} else if(type == JJSocketType.ReceivedChat) {
-		}*/
-
-//		JJSocketType chat = new JJSocketType();
 		sock.type = type;
 		SockList.Add(sock);
 	}
-
-//	IEnumerator WaitAndChat(string str)
-//	{
-//		yield return new WaitForSeconds(3.0f);
-//		txtChatContainer.text += str;
-//	}
 	
 	void Shutdown() {
 		if(_socket != null) {
 			try {
 				Debug.Log("shutdown");
+				DebugWindow.Log("shutdown");
 				_socket.Shutdown(SocketShutdown.Both);
 				_socket = null;
 //				LoginScene.SetActive(true);
 //				LobbyScene.SetActive(false);
 			} catch(Exception e) {
 				Debug.LogError("Sutdown Exception : " + e.Message);
+				DebugWindow.Log("Sutdown Exception : " + e.Message);
 				_socket = null;
 			}
 		}
@@ -186,5 +182,14 @@ public class TcpSocket {
 			SockList.RemoveAt(0);
 		}
 		return sock;
+	}
+
+	public string PopSockString() {
+		string str = null;
+		if(sockStringList.Count > 0) {
+			str = sockStringList[0];
+			sockStringList.RemoveAt(0);
+		}
+		return str;
 	}
 }
