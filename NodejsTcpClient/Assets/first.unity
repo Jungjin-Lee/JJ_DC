@@ -875,7 +875,7 @@ GameObject:
   - 222: {fileID: 310346207}
   - 114: {fileID: 310346206}
   m_Layer: 5
-  m_Name: Text
+  m_Name: txtMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2664,6 +2664,72 @@ Transform:
   - {fileID: 984669043}
   m_Father: {fileID: 611844360}
   m_RootOrder: 1
+--- !u!1 &870626833
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 870626836}
+  - 222: {fileID: 870626835}
+  - 114: {fileID: 870626834}
+  m_Layer: 5
+  m_Name: txtPlayer1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &870626834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 870626833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 23
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 3
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Player1 : '
+--- !u!222 &870626835
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 870626833}
+--- !u!224 &870626836
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 870626833}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2074497414}
+  m_RootOrder: 1
+  m_AnchorMin: {x: 0, y: .5}
+  m_AnchorMax: {x: 0, y: .5}
+  m_AnchoredPosition: {x: -307.220001, y: 78.7200012}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0, y: .5}
 --- !u!1 &887701322
 GameObject:
   m_ObjectHideFlags: 0
@@ -4911,6 +4977,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LoginScene: {fileID: 503796844}
   LobbyScene: {fileID: 182011943}
+  RoomScene: {fileID: 2074497415}
+  Room3D: {fileID: 1003704115}
   IP: 127.0.0.1
   PORT: 8000
   txtName: {fileID: 724266438}
@@ -5563,6 +5631,72 @@ Transform:
   - {fileID: 2107831707}
   m_Father: {fileID: 611844360}
   m_RootOrder: 23
+--- !u!1 &1735226754
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1735226755}
+  - 222: {fileID: 1735226757}
+  - 114: {fileID: 1735226756}
+  m_Layer: 5
+  m_Name: txtPlayer2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1735226755
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1735226754}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2074497414}
+  m_RootOrder: 2
+  m_AnchorMin: {x: 0, y: .5}
+  m_AnchorMax: {x: 0, y: .5}
+  m_AnchoredPosition: {x: 239.600006, y: 78.7200012}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0, y: .5}
+--- !u!114 &1735226756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1735226754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 23
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 3
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Player2 : '
+--- !u!222 &1735226757
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1735226754}
 --- !u!1 &1738022319
 GameObject:
   m_ObjectHideFlags: 0
@@ -7078,6 +7212,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 2074497414}
+  - 114: {fileID: 2074497415}
   m_Layer: 5
   m_Name: Room
   m_TagString: Untagged
@@ -7096,6 +7231,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 310346205}
+  - {fileID: 870626836}
+  - {fileID: 1735226755}
   m_Father: {fileID: 1811126510}
   m_RootOrder: 3
   m_AnchorMin: {x: .5, y: .5}
@@ -7103,6 +7240,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
+--- !u!114 &2074497415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2074497413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dd5c49e1ae2c4964b51d195b75f422f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tcp: {fileID: 1523184378}
+  txtPlayer1: {fileID: 870626834}
+  txtPlayer2: {fileID: 1735226756}
+  txtMain: {fileID: 310346206}
+  State: 0
 --- !u!1 &2076906252
 GameObject:
   m_ObjectHideFlags: 0

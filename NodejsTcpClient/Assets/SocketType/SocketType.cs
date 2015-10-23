@@ -22,6 +22,10 @@ public abstract class JJSocketType {
 	public const int RoomConnectFailed = 32;
 
 	public const int RoomInfo = 40;
+
+	public const int RoomPlay = 50;
+	public const int RoomPlayDice = 51;
+	public const int RoomThrowDice = 52;
 }
 
 public class JJSocket {

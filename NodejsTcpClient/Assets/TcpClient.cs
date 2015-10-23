@@ -15,6 +15,8 @@ public class TcpClient : MonoBehaviour {
 
 	public GameObject LoginScene;
 	public GameObject LobbyScene;
+	public RoomScene RoomScene;
+	public GameObject Room3D;
 
 	public string IP = "127.0.0.1";
 	public int PORT = 8000;
@@ -39,6 +41,9 @@ public class TcpClient : MonoBehaviour {
 		SocketManager.EventRoomJoinSuccess = new TcpSocketManager.EventSocket(EventRoomJoinSuccess);
 		SocketManager.EventRoomConnectSuccess = new TcpSocketManager.EventSocket(EventRoomConnectSuccess);
 		SocketManager.EventRoomInfo = new TcpSocketManager.EventSocket(EventRoomInfo);
+		SocketManager.EventRoomPlay = new TcpSocketManager.EventSocket(EventRoomPlay);
+		SocketManager.EventRoomPlayDice = new TcpSocketManager.EventSocket(EventRoomPlayDice);
+		SocketManager.EventRoomThrowDice = new TcpSocketManager.EventSocket(EventRoomThrowDice);
 	}
 
 	void Update() {
@@ -70,7 +75,9 @@ public class TcpClient : MonoBehaviour {
 		SocketRoomJoin room = sock as SocketRoomJoin;
 		Debug.Log("EventRoomJoinSuccess - " + room.room);
 		Main.Instance.room = room.room;
-		Main.Instance.mySlot = 0;
+		Main.Instance.mySlot = 1;
+		RoomScene.gameObject.SetActive(true);
+		Room3D.SetActive(true);
 	}
 
 	void EventRoomConnectSuccess(JJSocket sock) {
@@ -86,6 +93,30 @@ public class TcpClient : MonoBehaviour {
 		Main.Instance.room = room.room;
 		Main.Instance.player1 = room.player1;
 		Main.Instance.player2 = room.player2;
+		RoomScene.txtPlayer1.text = Main.Instance.player1;
+		RoomScene.txtPlayer2.text = Main.Instance.player2;
+
+		RoomScene.gameObject.SetActive(true);
+		Room3D.SetActive(true);
+	}
+
+	void EventRoomPlay(JJSocket sock) {
+	}
+
+	void EventRoomPlayDice(JJSocket sock) {
+		SocketRoomPlayDice room = sock as SocketRoomPlayDice;
+		if(room.t == Main.Instance.mySlot) {
+			Debug.Log("myTurn : ");
+			RoomScene.SetMyTurn();
+		} else {
+			Debug.Log("myWait : ");
+			RoomScene.SetWait();
+		}
+	}
+
+	void EventRoomThrowDice(JJSocket sock) {
+		SocketRoomThrowDice dice = sock as SocketRoomThrowDice;
+		RoomScene.Move(dice);
 	}
 
 	public void Connect() {

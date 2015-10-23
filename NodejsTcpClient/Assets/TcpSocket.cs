@@ -112,12 +112,23 @@ public class TcpSocket {
 				string jsonString = System.Text.Encoding.UTF8.GetString(cuttingBuffer);
 				Debug.Log("recv : " + jsonString);
 				sockStringList.Add("recv : " + jsonString);
-				JsonData json = JsonMapper.ToObject(jsonString);
 
+				if(jsonString.IndexOf("}") != jsonString.Length - 1) {
+					char sp = '}';
+					jsonString.IndexOf("}");
+					string[] spstring = jsonString.Split(sp);
+					for(int i = 0; i < spstring.Length - 1; i++) {
+						SocketAdd(spstring[i] + "}");
+						sockStringList.Add(spstring[i] + "}");
+					}
+				} else {
+					SocketAdd(jsonString);
+				}
 
-				Debug.Log("type : " + json["type"]);
-				int type = int.Parse(json["type"].ToString());
-				AddQueue(type, jsonString);
+//				JsonData json = JsonMapper.ToObject(jsonString);
+//				Debug.Log("type : " + json["type"]);
+//				int type = int.Parse(json["type"].ToString());
+//				AddQueue(type, jsonString);
 				System.Array.Clear(_recvBuffer, 0, _recvBuffer.Length);
 			}
 		} catch(Exception e) {
@@ -125,6 +136,13 @@ public class TcpSocket {
 			DebugWindow.Log("Receive Exception : " + e.Message);
 			Shutdown();
 		}
+	}
+
+	void SocketAdd(string jsonString) {
+		JsonData json = JsonMapper.ToObject(jsonString);
+		Debug.Log("type : " + json["type"]);
+		int type = int.Parse(json["type"].ToString());
+		AddQueue(type, jsonString);
 	}
 
 	void AddQueue(int type, string json) {
@@ -148,6 +166,15 @@ public class TcpSocket {
 			break;
 		case JJSocketType.RoomInfo:
 			sock = JsonMapper.ToObject<SocketRoomInfo>(json);
+			break;
+		case JJSocketType.RoomPlay:
+			sock = JsonMapper.ToObject<SocketRoomPlay>(json);
+			break;
+		case JJSocketType.RoomPlayDice:
+			sock = JsonMapper.ToObject<SocketRoomPlayDice>(json);
+			break;
+		case JJSocketType.RoomThrowDice:
+			sock = JsonMapper.ToObject<SocketRoomThrowDice>(json);
 			break;
 		default:
 			Debug.LogError("TcpSocket - AddQueue - Set Type Please");

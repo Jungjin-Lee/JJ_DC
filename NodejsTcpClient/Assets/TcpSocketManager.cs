@@ -11,6 +11,9 @@ public class TcpSocketManager : MonoBehaviour {
 	public EventSocket EventRoomJoinSuccess;
 	public EventSocket EventRoomConnectSuccess;
 	public EventSocket EventRoomInfo;
+	public EventSocket EventRoomPlay;
+	public EventSocket EventRoomPlayDice;
+	public EventSocket EventRoomThrowDice;
 
 	public TcpSocket tcpSocket;
 
@@ -55,6 +58,14 @@ public class TcpSocketManager : MonoBehaviour {
 			break;
 		case JJSocketType.RoomInfo:
 			EventRoomInfo(sock);
+			break;
+		case JJSocketType.RoomPlay:
+			break;
+		case JJSocketType.RoomPlayDice:
+			EventRoomPlayDice(sock);
+			break;
+		case JJSocketType.RoomThrowDice:
+			EventRoomThrowDice(sock);
 			break;
 		}
 	}
