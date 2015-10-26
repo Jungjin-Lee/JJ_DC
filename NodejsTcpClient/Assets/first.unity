@@ -7255,6 +7255,10 @@ MonoBehaviour:
   txtPlayer1: {fileID: 870626834}
   txtPlayer2: {fileID: 1735226756}
   txtMain: {fileID: 310346206}
+  Player1: {fileID: 688577243}
+  Player2: {fileID: 813090361}
+  Player1Position: 0
+  Player2Position: 0
   State: 0
 --- !u!1 &2076906252
 GameObject:

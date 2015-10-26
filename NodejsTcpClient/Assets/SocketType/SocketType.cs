@@ -26,6 +26,7 @@ public abstract class JJSocketType {
 	public const int RoomPlay = 50;
 	public const int RoomPlayDice = 51;
 	public const int RoomThrowDice = 52;
+	public const int RoomPlayNext = 53;
 }
 
 public class JJSocket {
