@@ -1150,7 +1150,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1106938050}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7258,8 +7258,11 @@ MonoBehaviour:
   Player1: {fileID: 688577243}
   Player2: {fileID: 813090361}
   Player1Position: 0
+  Player1PositionNext: 0
   Player2Position: 0
+  Player2PositionNext: 0
   State: 0
+  Turn: 0
 --- !u!1 &2076906252
 GameObject:
   m_ObjectHideFlags: 0
