@@ -125,9 +125,11 @@ public class PlayingRoom : MonoBehaviour {
 		SocketRoomRaceNext room = sock as SocketRoomRaceNext;
 		Debug.Log("EventRoomRaceNext slot:" + room.n);
 		if(room.n == mySlot) {
+			MoneyRoom.Instance.Give(0);
 			btnRaceCall.gameObject.SetActive(true);
 			btnRaceDie.gameObject.SetActive(true);
 		} else {
+			MoneyRoom.Instance.Give(1);
 			btnRaceCall.gameObject.SetActive(false);
 			btnRaceDie.gameObject.SetActive(false);
 		}
@@ -194,6 +196,12 @@ public class PlayingRoom : MonoBehaviour {
 	}
 
 	public void OnClickRaceHalf() {
+		JJSocket sock = new JJSocket();
+		sock.type = JJSocketType.RoomRaceHalf;
+		TcpSocketManager.Instance.tcpSocket.SendMessage(sock);
+		
+		btnRaceCall.gameObject.SetActive(false);
+		btnRaceDie.gameObject.SetActive(false);
 	}
 
 	public void OnClickRaceCall() {

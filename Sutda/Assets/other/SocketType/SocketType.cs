@@ -34,6 +34,7 @@ public abstract class JJSocketType {
 	public const int RoomGiveCard = 60;
 
 	public const int RoomRaceCall = 70;
+	public const int RoomRaceHalf = 71;
 	public const int RoomRaceNext = 79;
 	public const int RoomRaceDie = 80;
 

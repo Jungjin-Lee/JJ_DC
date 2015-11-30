@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class PlayerPosition : MonoBehaviour {
 
+	public int slot;
 	public Text txtName;
 	public Text txtMoney;
 	public int money;
