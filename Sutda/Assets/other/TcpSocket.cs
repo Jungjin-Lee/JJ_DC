@@ -14,7 +14,7 @@ public class TcpSocket {
 	List<string> sockStringList = new List<string>();
 
 	Socket _socket = null;
-//	User _user = new User();
+    bool isConnected = false;
 
 	byte[] _recvBuffer = new byte[1024];
 
@@ -25,19 +25,35 @@ public class TcpSocket {
 		_socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 		_socket.Connect(IP, PORT);
 		if(_socket.Connected) {
-			Debug.Log("connected");
+            isConnected = true;
+            Debug.Log("connected");
 		} else {
-			Debug.Log("fail to connect");
+            JJSocket sock = new JJSocket();
+            sock.type = JJSocketType.ConnectFailed;
+            SockList.Add(sock);
+            Debug.Log("fail to connect");
 		}
 	}
 
 	public void Connect(string ip, int port) {
 		_socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-		_socket.Connect(ip, port);
+        try
+        {
+            _socket.Connect(ip, port);
+        }
+        catch (SocketException e)
+        {
+            Debug.Log("Connect:" + e.Message);
+        }
+		
 		if(_socket.Connected) {
-			Debug.Log("connected");
+            isConnected = true;
+            Debug.Log("connected");
 		} else {
-			Debug.Log("fail to connect");
+            JJSocket sock = new JJSocket();
+            sock.type = JJSocketType.ConnectFailed;
+            SockList.Add(sock);
+            Debug.Log("fail to connect");
 		}
 	}
 
@@ -91,7 +107,7 @@ public class TcpSocket {
 
 	public void ReceiveMessage() {
 		try {
-			if(_socket == null) {
+			if(_socket == null || !isConnected) {
 				return;
 			}
 			_socket.BeginReceive(_recvBuffer, 0, _recvBuffer.Length, SocketFlags.None, new AsyncCallback(ReceiveComplete), null);

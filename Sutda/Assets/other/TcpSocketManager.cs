@@ -8,7 +8,8 @@ public class TcpSocketManager : MonoBehaviour {
 	public delegate void EventSocket(JJSocket sock);
 
 	public EventSocket EventConnected;
-	public EventSocket EventLoginSuccess;
+    public EventSocket EventConnectFailed;
+    public EventSocket EventLoginSuccess;
 	public EventSocket EventReceivedChat;
 	public EventSocket EventRoomJoinSuccess;
 	public EventSocket EventRoomConnectSuccess;
@@ -48,10 +49,11 @@ public class TcpSocketManager : MonoBehaviour {
 		switch(sock.type) {
 		case JJSocketType.Connected:
 			Debug.Log("ProcessSock - JJSocketType.Connected");
-
 			EventConnected(sock);
 			break;
-
+       case JJSocketType.ConnectFailed:
+            EventConnectFailed(sock);
+			break;
 		case JJSocketType.LoginSuccess:
 			EventLoginSuccess(sock);
 			break;

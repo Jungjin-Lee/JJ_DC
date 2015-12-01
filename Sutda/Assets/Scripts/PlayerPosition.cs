@@ -25,8 +25,11 @@ public class PlayerPosition : MonoBehaviour {
 	}
 
 	public void SetBack1() {
-		imgCard1.sprite = ImageContainer.Instance.GetBackImage();
-		imgCard1.gameObject.SetActive(true);
+        if (txtName.text != "")
+        {
+            imgCard1.sprite = ImageContainer.Instance.GetBackImage();
+            imgCard1.gameObject.SetActive(true);
+        }
 	}
 
 	public void SetBack2() {

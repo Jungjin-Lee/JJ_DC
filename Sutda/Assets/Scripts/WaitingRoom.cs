@@ -10,10 +10,10 @@ public class WaitingRoom : MonoBehaviour {
 	}
 
 	void Start() {
-		TcpSocketManager.Instance.EventConnected = new TcpSocketManager.EventSocket(EventConnected);
+		
 	}
 
-	void EventConnected(JJSocket sock) {
+	public void EventConnected(JJSocket sock) {
 		SocketLogin login = new SocketLogin();
 		login.id = txtName.text;
 		login.pwd = "2";
