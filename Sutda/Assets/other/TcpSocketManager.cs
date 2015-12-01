@@ -17,6 +17,7 @@ public class TcpSocketManager : MonoBehaviour {
 	public EventSocket EventRoomPlayDice;
 	public EventSocket EventRoomThrowDice;
 	public EventSocket EventRoomGiveCard;
+	public EventSocket EventRoomRaceHalf;
 	public EventSocket EventRoomRaceNext;
 	public EventSocket EventRoomGameResult;
 
@@ -80,6 +81,9 @@ public class TcpSocketManager : MonoBehaviour {
 
 		case JJSocketType.RoomGiveCard:
 			EventRoomGiveCard(sock);
+			break;
+		case JJSocketType.RoomRaceHalf:
+			EventRoomRaceHalf(sock);
 			break;
 		case JJSocketType.RoomRaceNext:
 			EventRoomRaceNext(sock);

@@ -189,6 +189,9 @@ public class TcpSocket {
 		case JJSocketType.RoomGiveCard:
 			sock = JsonMapper.ToObject<SocketRoomGiveCard>(json);
 			break;
+		case JJSocketType.RoomRaceHalf:
+			sock = JsonMapper.ToObject<SocketRoomRaceHalf>(json);
+			break;
 		case JJSocketType.RoomRaceNext:
 			sock = JsonMapper.ToObject<SocketRoomRaceNext>(json);
 			break;

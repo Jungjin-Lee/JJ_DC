@@ -35,6 +35,8 @@ public abstract class JJSocketType {
 
 	public const int RoomRaceCall = 70;
 	public const int RoomRaceHalf = 71;
+	public const int RoomRaceBbing = 72;
+	public const int RoomRaceCheck = 73;
 	public const int RoomRaceNext = 79;
 	public const int RoomRaceDie = 80;
 
